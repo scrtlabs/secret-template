@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Wallet, SecretNetworkClient, fromUtf8 } from "secretjs";
 import fs from "fs";
+import path from "path";
 import assert from "assert";
 
 // Returns a client with which we can interact with secret network
@@ -126,7 +127,7 @@ async function initializeAndUploadContract() {
 
   const [contractHash, contractAddress] = await initializeContract(
     client,
-    "contract.wasm"
+    path.join(path.dirname(), "../contract.wasm")
   );
 
   var clientInfo: [SecretNetworkClient, string, string] = [
