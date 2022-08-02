@@ -11,5 +11,9 @@ secretcli config keyring-backend test
 secretcli config broadcast-mode block
 secretcli keys delete SecretIDE-Deployment -y
 cat ~/.Secret-IDE-seed | secretcli keys add SecretIDE-Deployment --recover || exit 1
-codeId=$(secretcli tx compute store contract.wasm.gz --from SecretIDE-Deployment --gas $gas -y | jq '.logs[0].events[0].attributes[3].value')
+codeId=$(secretcli tx compute store contract.wasm.gz --from SecretIDE-Deployment --gas $gas -y | jq -r '.logs[0].events[0].attributes[3].value')
+codeId=$(printf '%s' $codeId)
 echo "Contract stored successfully! Code ID: $codeId"
+label=${RANDOM}${RANDOM}${RANDOM}
+set -x
+secretcli tx compute instantiate $codeId '{"count":55}' --label "${label}" --from 'SecretIDE-Deployment' -y
