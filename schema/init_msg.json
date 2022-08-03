@@ -3,12 +3,30 @@
   "title": "InitMsg",
   "type": "object",
   "required": [
-    "count"
+    "manufacturers",
+    "pharmacists"
   ],
   "properties": {
-    "count": {
-      "type": "integer",
-      "format": "int32"
+    "manufacturers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CanonicalAddr"
+      }
+    },
+    "pharmacists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CanonicalAddr"
+      }
+    }
+  },
+  "definitions": {
+    "Binary": {
+      "description": "Binary is a wrapper around Vec<u8> to add base64 de/serialization with serde. It also adds some helper methods to help encode inline.\n\nThis is only needed as serde-json-{core,wasm} has a horrible encoding for Vec<u8>",
+      "type": "string"
+    },
+    "CanonicalAddr": {
+      "$ref": "#/definitions/Binary"
     }
   }
 }

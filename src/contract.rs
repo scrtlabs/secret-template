@@ -11,12 +11,12 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
     env: Env,
     msg: InitMsg,
 ) -> StdResult<InitResponse> {
-    let state = State {
-        count: msg.count,
-        owner: deps.api.canonical_address(&env.message.sender)?,
-    };
+    // let state = State {
+    //     count: msg.count,
+    //     owner: deps.api.canonical_address(&env.message.sender)?,
+    // };
 
-    config(&mut deps.storage).save(&state)?;
+    // config(&mut deps.storage).save(&state)?;
 
     debug_print!("Contract was initialized by {}", env.message.sender);
 
@@ -28,10 +28,11 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
     env: Env,
     msg: HandleMsg,
 ) -> StdResult<HandleResponse> {
-    match msg {
-        HandleMsg::Increment {} => try_increment(deps, env),
-        HandleMsg::Reset { count } => try_reset(deps, env, count),
-    }
+    // match msg {
+    //     HandleMsg::Increment {} => try_increment(deps, env),
+    //     HandleMsg::Reset { count } => try_reset(deps, env, count),
+    // }
+    Ok(HandleResponse::default())
 }
 
 pub fn try_increment<S: Storage, A: Api, Q: Querier>(
@@ -69,9 +70,10 @@ pub fn query<S: Storage, A: Api, Q: Querier>(
     deps: &Extern<S, A, Q>,
     msg: QueryMsg,
 ) -> StdResult<Binary> {
-    match msg {
-        QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
-    }
+    // match msg {
+    //     QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
+    // }
+    to_binary(&query_count(deps)?)
 }
 
 fn query_count<S: Storage, A: Api, Q: Querier>(deps: &Extern<S, A, Q>) -> StdResult<CountResponse> {

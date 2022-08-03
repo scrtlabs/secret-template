@@ -32,6 +32,109 @@
           }
         }
       }
+    },
+    {
+      "type": "object",
+      "required": [
+        "create_batch"
+      ],
+      "properties": {
+        "create_batch": {
+          "type": "object",
+          "required": [
+            "batch_id",
+            "locations",
+            "threshold"
+          ],
+          "properties": {
+            "batch_id": {
+              "type": "string"
+            },
+            "locations": {
+              "type": "string"
+            },
+            "threshold": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "add_patient"
+      ],
+      "properties": {
+        "add_patient": {
+          "type": "object",
+          "required": [
+            "batch_id",
+            "symptom_token"
+          ],
+          "properties": {
+            "batch_id": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              },
+              "maxItems": 32,
+              "minItems": 32
+            },
+            "symptom_token": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              },
+              "maxItems": 32,
+              "minItems": 32
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "add_symptom"
+      ],
+      "properties": {
+        "add_symptom": {
+          "type": "object",
+          "required": [
+            "batch_id",
+            "symptom_token"
+          ],
+          "properties": {
+            "batch_id": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              },
+              "maxItems": 32,
+              "minItems": 32
+            },
+            "symptom_token": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              },
+              "maxItems": 32,
+              "minItems": 32
+            }
+          }
+        }
+      }
     }
   ]
 }

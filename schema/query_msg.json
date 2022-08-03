@@ -12,6 +12,32 @@
           "type": "object"
         }
       }
+    },
+    {
+      "type": "object",
+      "required": [
+        "check_batch"
+      ],
+      "properties": {
+        "check_batch": {
+          "type": "object",
+          "required": [
+            "batch_id"
+          ],
+          "properties": {
+            "batch_id": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              },
+              "maxItems": 32,
+              "minItems": 32
+            }
+          }
+        }
+      }
     }
   ]
 }
